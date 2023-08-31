@@ -24,12 +24,16 @@ I will follow the Case Study roadmap given by the Google Analytics course in ord
 
 The Roadmap has 6 steps: 
 
-    1. Ask
-    2. Prepare
-    3. Process
-    4. Analyze 
-    5. Share
-    6. Act
+1. [Ask](#Ask)
+2. [Prepare]
+3. [Process]
+4. [Analyze]
+5. [Share]
+6. [Act]
 
-### Ask
+## Ask
+
+**The main question is how do annual and casual members use Cyclistic differently.**
+
+
 
