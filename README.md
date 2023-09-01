@@ -26,7 +26,7 @@ The Roadmap has 6 steps:
 
 1. [Ask](#Ask)
 2. [Prepare](#Prepare)
-3. [Process]
+3. [Process](#Process)
 4. [Analyze]
 5. [Share]
 6. [Act]
@@ -43,6 +43,20 @@ The Roadmap has 6 steps:
 | How can your insights drive business decisions?| By analyzing the data and and understanding the trends and patterns, I will be able to make evidence-based decisions.| 
 
 ## Prepare
+To be able to analyze the dataset, I need to prepare it by checking if the data is well-formatted and the source is reliable. Below, I compiled all the concerned questions and answers to check the eligibilty of the dataset.
 
+
+### Guiding Table - Prepare
+| Guiding Questions        | Answers         |
+| -----------------        | -----------------|
+| Where is your data located?     | The data is located [here](https://divvy-tripdata.s3.amazonaws.com/index.html) and is stored locally as well for analysis. |
+|How is the data organized?   | I will be using the data for the year 2022 and it is organized monthly in a spreadsheet.|
+| Are there issues with bias or credibility in this data?            | The data comes from the original source so is reliable. It is collected from a random population, therefore there are no issues regarding bias or credibility.|
+| How are you addressing licensing, privacy, security, and accessibility?      | The data has been made accessible under the Motivate International Inc. ([license](https://ride.divvybikes.com/data-license-agreement)) and the riders' private information are blocked as well.|
+| How did you verify the data’s integrity? | The data comes from a reliable source and it is comprehensive, current and cited. |
+| How does it help you answer your question? | The data contains valuable information about the casual and annual members that will allow me to analyze the problem and answer the question properly. |
+| Are there any problems with the data? | The dataset is appropriate and will help in answering the question. |
+
+## Process
 
 
