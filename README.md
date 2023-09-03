@@ -55,8 +55,16 @@ To be able to analyze the dataset, I need to prepare it by checking if the data 
 | How are you addressing licensing, privacy, security, and accessibility?      | The data has been made accessible under the Motivate International Inc. ([license](https://ride.divvybikes.com/data-license-agreement)) and the riders' private information are blocked as well.|
 | How did you verify the data’s integrity? | The data comes from a reliable source and it is comprehensive, current and cited. |
 | How does it help you answer your question? | The data contains valuable information about the casual and annual members that will allow me to analyze the problem and answer the question properly. |
-| Are there any problems with the data? | The dataset is appropriate and will help in answering the question. |
+| Are there any problems with the data? | The dataset is appropriate but there is a few null values in the station names columns. |
 
 ## Process
 
+### Guiding Table - Process
 
+| Guiding Questions                                                | Answers                                                                                                                                                                   |
+|------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| What tools are you choosing and why?                             | To be able to clean and filter large dataset, it is better to use BigQuery and SQL.                                                                                       |
+| What steps have you taken to ensure that your data is clean?     | I have checked that the data was well-formatted and the datatypes of each columns are appropriate.                                                                        |
+| How can you verify that your data is clean and ready to analyze? | I have checked that the data is recognizable and usable in my database. I have checked if the relevant data had no errors and transformed the data for further analyzing. |
+
+I have added a ride_length column to be able to know each riders' usage duration. I have also added a week_of_day column to be able to analyze the dataset for each day of the week. Both were done in Google Sheets. The processed data is saved in the Processed data subfolder.
