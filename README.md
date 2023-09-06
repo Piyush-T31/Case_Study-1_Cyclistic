@@ -1,4 +1,3 @@
-
 # Case study 1 Google Analytics 
 This capstone project is for the Google Analytics Certificate where I study a particular dataset and present my findings. 
 
@@ -80,38 +79,98 @@ To analyze the dataset, I will be using R programming language as it can deal wi
 | How should you organize your data to perform analysis on it? | I have imported my 2022 dataset onto R and I merged the January to April data into a single dataframe for a quarter year analysis. |
 | Has your data been properly formatted?                       | I have check each dataset using colnames for consistency before merging them into one dataframe.                                   |
 
-Installing and loading all the libraries.
-```{r}
-#load libraries 
-install.packages("dplyr")
-library(dplyr)
-install.packages("tidyverse")
-library(tidyverse)
-```
+### Cyclistic_Exercise_Full_Year_Analysis ###
 
-This part is to check whether the data is well-formatted and cleaned.
+ This analysis is for case study 1 from the Google Data Analytics Certificate (Cyclistic).  It’s originally based on the case study "'Sophisticated, Clear, and Polished’: Divvy and Data Visualization" written by Kevin Hartman (found here: https://artscience.blog/home/divvy-dataviz-case-study). We will be using the Divvy dataset for the case study. The purpose of this script is to consolidate downloaded Divvy data into a single dataframe and then conduct simple analysis to help answer the key question: “In what ways do members and casual riders use Divvy bikes differently?”
+
+* Install required packages
+* tidyverse for data import and wrangling
+* libridate for date functions
+* ggplot for visualization
 
 ```{r}
-# To be able to view the data
-data <- read.csv("202201_tripdata.csv")
-
-# Display the first 10 rows of the data frame to check the Dataframe
-head(data, n=10)
-
-# Filter the data to include only rows where the end stations and longitudes are 41.79 and -87.58. This was to see if there are any important empty cells
-filtered_data <- data %>%
-  filter(end_lat == 41.79000 & end_lng == -87.58)
-
-head(filtered_data, n=10)
+library(tidyverse)  #helps wrangle data
+library(lubridate)  #helps wrangle date attributes
+library(ggplot2)  #helps visualize data
 
 ```
-
-Then, I merged the dataset from Jan to April into a single dataframe for further analysis.
 ```{r}
-# Merge all the data into a single Dataframe
-data2 <- read.csv("202202_tripdata.csv")
-data3 <- read.csv("202203_tripdata.csv")
-data4 <- read.csv("202204_tripdata.csv")
-merged_data <- rbind(data,data2,data3,data4)
+#=====================
+# STEP 1: COLLECT DATA. EACH DATA REPRESENTS A QUARTER OF THE YEAR
+#=====================
+# Upload Divvy datasets (csv files) here
+q2_2019 <- read_csv("Divvy_Trips_2019_Q2.csv")
+q3_2019 <- read_csv("Divvy_Trips_2019_Q3.csv")
+q4_2019 <- read_csv("Divvy_Trips_2019_Q4.csv")
+q1_2020 <- read_csv("Divvy_Trips_2020_Q1.csv")
+
+```
+
+```{r}
+#====================================================
+# STEP 2: WRANGLE DATA AND COMBINE INTO A SINGLE FILE
+#====================================================
+# Compare column names each of the files
+# While the names don't have to be in the same order, they DO need to match perfectly before we can use a command to join them into one file
+colnames(q3_2019)
+colnames(q4_2019)
+colnames(q2_2019)
+colnames(q1_2020)
+
+# Rename columns  to make them consisent with q1_2020 (as this will be the supposed going-forward table design for Divvy)
+
+(q4_2019 <- rename(q4_2019
+                   ,ride_id = trip_id
+                   ,rideable_type = bikeid 
+                   ,started_at = start_time  
+                   ,ended_at = end_time  
+                   ,start_station_name = from_station_name 
+                   ,start_station_id = from_station_id 
+                   ,end_station_name = to_station_name 
+                   ,end_station_id = to_station_id 
+                   ,member_casual = usertype))
+
+(q3_2019 <- rename(q3_2019
+                   ,ride_id = trip_id
+                   ,rideable_type = bikeid 
+                   ,started_at = start_time  
+                   ,ended_at = end_time  
+                   ,start_station_name = from_station_name 
+                   ,start_station_id = from_station_id 
+                   ,end_station_name = to_station_name 
+                   ,end_station_id = to_station_id 
+                   ,member_casual = usertype))
+
+(q2_2019 <- rename(q2_2019
+                   ,ride_id = "01 - Rental Details Rental ID"
+                   ,rideable_type = "01 - Rental Details Bike ID" 
+                   ,started_at = "01 - Rental Details Local Start Time"  
+                   ,ended_at = "01 - Rental Details Local End Time"  
+                   ,start_station_name = "03 - Rental Start Station Name" 
+                   ,start_station_id = "03 - Rental Start Station ID"
+                   ,end_station_name = "02 - Rental End Station Name" 
+                   ,end_station_id = "02 - Rental End Station ID"
+                   ,member_casual = "User Type"))
+
+# Inspect the dataframes and look for inconguencies
+str(q1_2020)
+str(q4_2019)
+str(q3_2019)
+str(q2_2019)
+
+# Convert ride_id and rideable_type to character so that they can stack correctly
+q4_2019 <-  mutate(q4_2019, ride_id = as.character(ride_id)
+                   ,rideable_type = as.character(rideable_type)) 
+q3_2019 <-  mutate(q3_2019, ride_id = as.character(ride_id)
+                   ,rideable_type = as.character(rideable_type)) 
+q2_2019 <-  mutate(q2_2019, ride_id = as.character(ride_id)
+                   ,rideable_type = as.character(rideable_type)) 
+
+# Stack individual quarter's data frames into one big data frame
+all_trips <- bind_rows(q2_2019, q3_2019, q4_2019, q1_2020)
+
+# Remove lat, long, birthyear, and gender fields as this data was dropped beginning in 2020
+all_trips <- all_trips %>%  
+  select(-c(start_lat, start_lng, end_lat, end_lng, birthyear, gender, "01 - Rental Details Duration In Seconds Uncapped", "05 - Member Details Member Birthday Year", "Member Gender", "tripduration"))
 
 ```
