@@ -250,9 +250,32 @@ summary(all_trips_v2$ride_length)
 
 # Compare members and casual users
 aggregate(all_trips_v2$ride_length ~ all_trips_v2$member_casual, FUN = mean)
+
+| casual_members | average length of the ride  |
+|----------------|-----------------------------|
+| casual         | 3552.7502                   |
+| member         | 850.0662                    |
+
 aggregate(all_trips_v2$ride_length ~ all_trips_v2$member_casual, FUN = median)
+
+| casual_members | median length of the ride  |
+|----------------|----------------------------|
+| casual         | 1546                       |
+| member         | 589                        |
+
 aggregate(all_trips_v2$ride_length ~ all_trips_v2$member_casual, FUN = max)
+
+| casual_members | max length of the ride  |
+|----------------|-------------------------|
+| casual         | 9387024                 |
+| member         | 9056634                 |
+
 aggregate(all_trips_v2$ride_length ~ all_trips_v2$member_casual, FUN = min)
+
+| casual_members | min length of the ride  |
+|----------------|-------------------------|
+| casual         | 2                       |
+| member         | 1                       |
 
 # See the average ride time by each day for members vs casual users
 aggregate(all_trips_v2$ride_length ~ all_trips_v2$member_casual + all_trips_v2$day_of_week, FUN = mean)
@@ -271,6 +294,43 @@ all_trips_v2 %>%
             ,average_duration = mean(ride_length)) %>% 		# calculates the average duration
   arrange(member_casual, weekday)								# sorts
 ```
+The table below was generated to find the average time casual and member riders take when they use Cyclistic for each day of the week:
+
+| casual_member | day of the week | average ride length |
+|---------------|-----------------|---------------------|
+| casual        | Sunday          | 3581.4054           |
+| member        | Sunday          | 919.9746            |
+| casual        | Monday          | 3372.2869           |
+| member        | Monday          | 842.5726            |
+| casual        | Tuesday         | 3596.3599           |
+| member        | Tuesday         | 826.1427            |
+| casual        | Wednesday       | 3718.6619           |
+| member        | Wednesday       | 823.9996            |
+| casual        | Thursday        | 3682.9847           |
+| member        | Thursday        | 823.9278            |
+| casual        | Friday          | 3773.8351           |
+| member        | Friday          | 824.5305            |
+| casual        | Saturday        | 3331.9138           |
+| member        | Saturday        | 968.9337            |
+
+The table generated below has classified the number of rides and the average duration of the rides for casuals and members for each day of the week:
+
+| member_casual  | weekday | number_of_rides | average_duration |
+|----------------|---------|-----------------|------------------|
+| casual         | Sun     | 181293          | 3581             |
+| casual         | Mon     | 103296          | 3372             |
+| casual         | Tue     | 90510           | 3596             |
+| casual         | Wed     | 92457           | 3719             |
+| casual         | Thu     | 102679          | 3683             |
+| casual         | Fri     | 122404          | 3774             |
+| casual         | Sat     | 209543          | 3332             |
+| member         | Sun     | 267965          | 920              |
+| member         | Mon     | 472196          | 843              |
+| member         | Tue     | 508445          | 826              |
+| member         | Wed     | 500329          | 824              |
+| member         | Thu     | 484177          | 824              |
+| member         | Fri     | 452790          | 825              |
+| member         | Sat     | 287958          | 969              |
 
 ## Share
 
