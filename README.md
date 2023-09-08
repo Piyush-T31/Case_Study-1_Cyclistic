@@ -235,7 +235,8 @@ is.numeric(all_trips$ride_length)
 all_trips_v2 <- all_trips[!(all_trips$start_station_name == "HQ QR" | all_trips$ride_length<0),]
 
 ```
-```{r}
+
+```r
 #=====================================
 # STEP 4: CONDUCT DESCRIPTIVE ANALYSIS
 #=====================================
