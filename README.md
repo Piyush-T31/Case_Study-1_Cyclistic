@@ -370,3 +370,10 @@ all_trips_v2 %>%
 
 
 ## Act
+
+From the first bar chart, for the year 2019, we can see that for every days of the week, annual members have a higher number of rides than casuals. The annual member are more active during the week days while the casual members are more active during the weekends.
+
+From the second bar chart, however, we observe that casual members use the Cyclistic rides for much longer distance than annual members. 
+
+- One step to convert casual members to annual could be using promotions or discounts for riders that travel much further.
+- We can increase the number of bikes during the week days as they have a higher volume of riders than the weekend.
