@@ -88,13 +88,13 @@ To analyze the dataset, I will be using R programming language as it can deal wi
 * libridate for date functions
 * ggplot for visualization
 
-```{r}
+```r
 library(tidyverse)  #helps wrangle data
 library(lubridate)  #helps wrangle date attributes
 library(ggplot2)  #helps visualize data
 
 ```
-```{r}
+```r
 #=====================
 # STEP 1: COLLECT DATA. EACH DATA REPRESENTS A QUARTER OF THE YEAR
 #=====================
@@ -106,7 +106,7 @@ q1_2020 <- read_csv("Divvy_Trips_2020_Q1.csv")
 
 ```
 
-```{r}
+```r
 #====================================================
 # STEP 2: WRANGLE DATA AND COMBINE INTO A SINGLE FILE
 #====================================================
@@ -174,7 +174,7 @@ all_trips <- all_trips %>%
   select(-c(start_lat, start_lng, end_lat, end_lng, birthyear, gender, "01 - Rental Details Duration In Seconds Uncapped", "05 - Member Details Member Birthday Year", "Member Gender", "tripduration"))
 
 ```
-```{r}
+```r
 #======================================================
 # STEP 3: CLEAN UP AND ADD DATA TO PREPARE FOR ANALYSIS
 #======================================================
@@ -337,7 +337,7 @@ The table generated below has classified the number of rides and the average dur
 
 First visualization is a bar chart for both casual and members. It is the number of rides for each day of the week. 
 
-```{r}
+```r
 # Let's visualize the number of rides by rider type
 all_trips_v2 %>% 
   mutate(weekday = wday(started_at, label = TRUE)) %>% 
@@ -354,7 +354,7 @@ all_trips_v2 %>%
 Second visualization is a bar chart for both casual and member riders. This one depicts the average duration of the rides for both riders for each day of the week.
 
 
-```{r}
+```r
 
 # Let's create a visualization for average duration
 all_trips_v2 %>% 
